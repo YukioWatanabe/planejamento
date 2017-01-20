@@ -30,7 +30,7 @@
                         <input id="iteracao" class="form-control">
                     </div>
                     <div class="col-xs-12" style="clear:both;">
-                        <button type="submit" class="btn btn-success">Buscar</button>
+                        <button id="botaoBuscar" type="submit" class="btn btn-success">Buscar</button>
                     </div>
                 </div>
                 
@@ -38,7 +38,7 @@
             
             <div class="panel panel-default">
                 <div class="panel-heading" style="text-align:center;font-weight:bold;">Post Its</div>
-                <div class="panel-body">
+                <div id="divPostIts" class="panel-body">
                     <div class="postit pequeno comp-alta">
                         <span class="atividade">SOL 8888:3</span>
                         <span class="tempo">5</span>
@@ -116,4 +116,18 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>   
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src=".\js\planejamento.js"></script>
+
+
+    <script type="text/javascript">
+        
+        $(document).ready(function(){
+
+            Planejamento.init();
+
+            $('#divPostIts').sortable();
+
+        });
+
+    </script>
 </html>

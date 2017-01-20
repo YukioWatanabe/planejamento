@@ -1,5 +1,17 @@
 var Planejamento = (function(){
 
+	var init = function(){
+
+		$('#botaoBuscar').on('click', function(e){
+
+			e.preventDefault();
+
+			var registros = getRegistrosPorIterecaoLider();
+
+			escrevePostIts(registros);
+
+		});
+	};
 
 	var getRegistrosPorIterecaoLider = function(){
 
@@ -7,13 +19,30 @@ var Planejamento = (function(){
 
 	};
 
+	var escrevePostIts = function(registros){
 
+		var $divPostIt = $('#divPostIts');
 
+		$.each(registros, function(i, registro){
 
+			var novoPostIt = $('<div>').addClass('postit pequeno add');			
+
+			$('<span>', {text : registro.CODIGOSOLITACAO+':'+registro.CODIGOATIVIDADE}).addClass('atividade').appendTo(novoPostIt);
+			$('<span>', {text : registro.TEMPOPREVISTO}).addClass('tempo').appendTo(novoPostIt);
+			$('<span>', {text : registro.TITULIATIVIDADE}).addClass('descricao').appendTo(novoPostIt);
+			$('<span>', {text : registro.CLASSIFICACAOPROJETO}).addClass('tipo').appendTo(novoPostIt);
+			$('<span>', {text : registro.PRIORIDADESOLICITACAO}).addClass('prioridade').appendTo(novoPostIt);
+
+			$divPostIt.append(novoPostIt);
+
+		});
+	};
 
 	return {
 
-		getRegistrosPorIterecaoLider : getRegistrosPorIterecaoLider
+		init : init,
+		getRegistrosPorIterecaoLider : getRegistrosPorIterecaoLider,
+		escrevePostIts : escrevePostIts
 
 	}
 
