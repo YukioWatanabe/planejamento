@@ -88,7 +88,7 @@
             
             <div>
                 <div class="page-header" style="text-align:center;"><h3>Complexidade</h3></div>
-                <table class="table tabela-complexidade">
+                <table id="tabelaComplexidade" class="table tabela-complexidade">
                     <thead>
                         <tr>
                             <th>Baixa</th>
@@ -125,7 +125,23 @@
 
             Planejamento.init();
 
-            $('#divPostIts').sortable();
+            var $divPostIts = $('#divPostIts');
+            var $tabelaComplexidade = $('#tabelaComplexidade tbody td');
+
+            $("div", $divPostIts).draggable({
+              revert: "invalid",
+              cursor: "move"
+            });
+
+            $tabelaComplexidade.droppable({
+              accept: "#divPostIts > div",
+              classes: {
+                "ui-droppable-active": "ui-state-highlight"
+              },
+              drop: function( event, ui ) {
+                
+              }
+            });
 
         });
 
