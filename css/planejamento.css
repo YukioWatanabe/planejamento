@@ -90,7 +90,7 @@
 }
 
 .postit > * {
-    margin: 10px;
+    margin: 5px;
 }
 
 .postit > .atividade{
@@ -113,7 +113,11 @@
 
 .postit > .descricao{
     position: absolute;
+    overflow: hidden;
     margin: 2em 1em;
+    height: 40px;
+    line-height: 14px;
+    font-size: 1em;
 }
 
 .postit > .tipo{

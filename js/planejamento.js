@@ -46,8 +46,11 @@ var Planejamento = (function(){
                 var classeComplexidade = ui.helper.parent().data('class_complexidade');
                 var prioridade = ui.helper.parent().data('numero_prioridade');
 
-                $(this).removeClass('add comp-baixa comp-media comp-alta').addClass(classeComplexidade);
-                $(this).find('span.prioridade').html(prioridade);
+                if(classeComplexidade){
+                	$(this).removeClass('add comp-baixa comp-media comp-alta').addClass(classeComplexidade);
+                }
+
+                $(this).find('span.prioridade').html(prioridade).css({color : 'green'});
             }
         });
 	};

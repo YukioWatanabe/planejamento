@@ -8,7 +8,7 @@
         <meta charset="utf-8">
     </head>
     <body>
-        <div class="container">
+        <div id="container" class="container">
             
             <form class="panel panel-primary">
                 <div class="panel-heading">Buscar Post Its</div>
@@ -150,13 +150,34 @@
 
             $('#botaoPrioridade').on('click', function(){
 
-                $('#divPostItsPorPrioridade').toggle();                
+                $('#divPostItsPorPrioridade').toggle();
+                var posicao = 0;
+
+                if($('#divPostItsPorPrioridade').is(':visible')){
+                    posicao = $('#divPostItsPorPrioridade').offset().top - 200
+
+                    $('#divPostItsPorComplexidade').hide();
+                }
+
+                $('body').animate({
+                    scrollTop : posicao
+                }, 1000);
 
             });
 
             $('#botaoComplexidade').on('click', function(){
 
-                $('#divPostItsPorComplexidade').toggle();                
+                $('#divPostItsPorComplexidade').toggle();
+
+                if($('#divPostItsPorComplexidade').is(':visible')){
+                    posicao = $('#divPostItsPorComplexidade').offset().top -200
+
+                    $('#divPostItsPorPrioridade').hide();
+                }
+
+                $('body').animate({
+                    scrollTop : posicao
+                }, 1000);              
 
             });
 
