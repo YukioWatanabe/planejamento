@@ -1,14 +1,15 @@
-<html>
+<!DOCTYPE html>
     <head>
         <title>Gerador de Post It</title>
         <link rel="stylesheet" href="css/planejamento2.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+        <meta charset="utf-8">
     </head>
     <body>
         <div class="container">
-            <div class="page-header"><h1>Gerador de Post It</h1></div>
+            
             <form class="panel panel-primary">
                 <div class="panel-heading">Buscar Post Its</div>
                 
@@ -31,7 +32,11 @@
                     </div>
                     <div class="col-xs-12" style="clear:both;">
                         <button id="botaoBuscar" type="submit" class="btn btn-success">Buscar</button>
+                        <button id="botaoPrioridade" type="button" class="btn btn-info">Prioridade</button>
+                        <button id="botaoComplexidade" type="button" class="btn btn-warning">Complexidade</button>
+                        <button id="botaoExportar" type="button" class="btn btn-primary">Exportar</button>
                     </div>
+
                 </div>
                 
             </form>
@@ -39,77 +44,65 @@
             <div class="panel panel-default">
                 <div class="panel-heading" style="text-align:center;font-weight:bold;">Post Its</div>
                 <div id="divPostIts" class="panel-body">
-                    <div class="postit pequeno comp-alta">
-                        <span class="atividade">SOL 8888:3</span>
-                        <span class="tempo">5</span>
-                        <span class="descricao">Atividade teste</span>
-                        <span class="tipo">SM</span>
-                        <span class="prioridade">4</span>
-                    </div>
-
-                    <div class="postit pequeno comp-media">
-                        <span class="atividade">SOL 8888:3</span>
-                        <span class="tempo">5</span>
-                        <span class="descricao">Atividade teste</span>
-                        <span class="tipo">SM</span>
-                        <span class="prioridade">4</span>
-                    </div>
-
-                    <div class="postit pequeno comp-baixa">
-                        <span class="atividade">SOL 8888:3</span>
-                        <span class="tempo">5</span>
-                        <span class="descricao">Atividade teste</span>
-                        <span class="tipo">SM</span>
-                        <span class="prioridade">4</span>
-                    </div>
-
-                    <div class="postit pequeno pastel">
-                        <span class="atividade">SOL 8888:3</span>
-                        <span class="tempo">5</span>
-                        <span class="descricao">Atividade teste</span>
-                        <span class="tipo">SM</span>
-                        <span class="prioridade">4</span>
-                    </div>
-
-                    <div class="postit pequeno bug">
-                        <span class="atividade">SOL 8888:3</span>
-                        <span class="tempo">5</span>
-                        <span class="descricao">Atividade teste</span>
-                        <span class="tipo">SM</span>
-                        <span class="prioridade">4</span>
-                    </div>
-					
-					<div class="postit pequeno add">
-                        <span class="descricao">Adicionar post it</span>
-                    </div>
+                    
 					
                 </div>
             </div>
             
-            <div>
-                <div class="page-header" style="text-align:center;"><h3>Complexidade</h3></div>
-                <table id="tabelaComplexidade" class="table tabela-complexidade">
-                    <thead>
-                        <tr>
-                            <th>Baixa</th>
-                            <th>Média</th>
-                            <th>Alta</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div id="divPostItsPorPrioridade" class="panel panel-default" style="display: none;">
+                <div class="panel-heading">
+                    Prioridade
+
+                    <button id="btn_salvar_prioridade" type="button" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
+                        Salvar
+                    </button>
+
+                </div>
+
+                <div class="prioridade panel panel-info" data-numero_prioridade="5">
+                    <div class="panel panel-heading ">5</div>
+                </div>
+                <div class="prioridade panel panel-info" data-numero_prioridade="4" >
+                    <div class="panel panel-heading">4</div>
+                </div>
+                <div class="prioridade panel panel-info" data-numero_prioridade="3" >
+                    <div class="panel panel-heading">3</div>
+                </div>
+                <div class="prioridade panel panel-info" data-numero_prioridade="2" >
+                    <div class="panel panel-heading">2</div>
+                </div>
+                <div class="prioridade panel panel-info" data-numero_prioridade="1" >
+                    <div class="panel panel-heading">1</div>
+                </div>
             </div>
-            
+           
+            <div id="divPostItsPorComplexidade" class="panel panel-default" style="display: none;">
+                <div class="panel-heading">
+                    Complexidade
+
+                    <button id="btn_salvar_complexidade" type="button" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
+                        Salvar
+                    </button>
+
+                </div>
+
+                <div class="col-md-4 panel panel-success complexidade" data-class_complexidade="comp-baixa" >
+                    <div class="panel panel-heading">Baixa</div>
+                </div>
+                <div class="col-md-4 panel panel-warning complexidade" data-class_complexidade="comp-media" >
+                    <div class="panel panel-heading">Média</div>
+                </div>
+                <div class="col-md-4 panel panel-danger complexidade" data-class_complexidade="comp-alta" >
+                    <div class="panel panel-heading">Alta</div>
+                </div>
+            </div>
+
         </div>
         <div class="footer" style="width:100%;">
             <div class="container">
-                <h3>Feito pela equipe Madagascar&trade;</h3>
+                <h3>© COPYRIGHT Equipe Madagascar&trade;</h3>
             </div>
         </div>
     </body>
@@ -126,21 +119,51 @@
             Planejamento.init();
 
             var $divPostIts = $('#divPostIts');
-            var $tabelaComplexidade = $('#tabelaComplexidade tbody td');
+            var $dropEnd = null;
 
-            $("div", $divPostIts).draggable({
-              revert: "invalid",
-              cursor: "move"
+            $('.complexidade, .prioridade').droppable({
+                accept: "#divPostIts > div",
+                classes: {
+                    "ui-droppable-active": "ui-state-highlight"
+                }
             });
 
-            $tabelaComplexidade.droppable({
-              accept: "#divPostIts > div",
-              classes: {
-                "ui-droppable-active": "ui-state-highlight"
-              },
-              drop: function( event, ui ) {
-                
-              }
+            $('.complexidade, .prioridade').sortable({
+                revert : true
+            });
+
+            $('#btn_salvar_complexidade').on('click', function(){
+
+                var postItsComComplexidade = $('#divPostItsPorComplexidade').find('.postit');
+
+                $('#divPostIts').prepend(postItsComComplexidade);
+
+            });
+
+            $('#btn_salvar_prioridade').on('click', function(){
+
+                var postItsComPrioridade = $('#divPostItsPorPrioridade').find('.postit');
+
+                $('#divPostIts').prepend(postItsComPrioridade);
+
+            });
+
+            $('#botaoPrioridade').on('click', function(){
+
+                $('#divPostItsPorPrioridade').toggle();                
+
+            });
+
+            $('#botaoComplexidade').on('click', function(){
+
+                $('#divPostItsPorComplexidade').toggle();                
+
+            });
+
+            $('#botaoExportar').on('click', function(){
+
+                window.open('relatorio.html');
+
             });
 
         });

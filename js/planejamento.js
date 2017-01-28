@@ -21,7 +21,7 @@ var Planejamento = (function(){
 
 	var escrevePostIts = function(registros){
 
-		var $divPostIt = $('#divPostIts');
+		var $divPostIts = $('#divPostIts');
 
 		$.each(registros, function(i, registro){
 
@@ -33,9 +33,23 @@ var Planejamento = (function(){
 			$('<span>', {text : registro.CLASSIFICACAOPROJETO}).addClass('tipo').appendTo(novoPostIt);
 			$('<span>', {text : registro.PRIORIDADESOLICITACAO}).addClass('prioridade').appendTo(novoPostIt);
 
-			$divPostIt.append(novoPostIt);
+			$divPostIts.append(novoPostIt);
 
 		});
+
+		$("div", $divPostIts).draggable({
+            revert: "invalid",
+            connectToSortable: ".complexidade, .prioridade",
+            cursor: "move",
+            stop : function(event, ui){
+
+                var classeComplexidade = ui.helper.parent().data('class_complexidade');
+                var prioridade = ui.helper.parent().data('numero_prioridade');
+
+                $(this).removeClass('add comp-baixa comp-media comp-alta').addClass(classeComplexidade);
+                $(this).find('span.prioridade').html(prioridade);
+            }
+        });
 	};
 
 	return {
