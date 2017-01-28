@@ -23,6 +23,8 @@ var Planejamento = (function(){
 
 		var $divPostIts = $('#divPostIts');
 
+		$divPostIts.find('.postit').remove();
+
 		$.each(registros, function(i, registro){
 
 			var novoPostIt = $('<div>').addClass('postit pequeno add');			
@@ -32,6 +34,8 @@ var Planejamento = (function(){
 			$('<span>', {text : registro.TITULIATIVIDADE}).addClass('descricao').appendTo(novoPostIt);
 			$('<span>', {text : registro.CLASSIFICACAOPROJETO}).addClass('tipo').appendTo(novoPostIt);
 			$('<span>', {text : registro.PRIORIDADESOLICITACAO}).addClass('prioridade').appendTo(novoPostIt);
+
+			novoPostIt.data('objetodados', registro);
 
 			$divPostIts.append(novoPostIt);
 
