@@ -54,7 +54,9 @@ var Planejamento = (function(){
                 	$(this).removeClass('add comp-baixa comp-media comp-alta').addClass(classeComplexidade);
                 }
 
-                $(this).find('span.prioridade').html(prioridade).css({color : 'green'});
+                if(prioridade){
+                	$(this).find('span.prioridade').html(prioridade).css({color : 'green'});
+                }
             }
         });
 	};

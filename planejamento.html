@@ -40,10 +40,11 @@
                 <div class="panel-heading" style="text-align:center;font-weight:bold;">
                     Post Its
 
-                    <button id="iconeOrdenarPostIt" type="button" class="btn btn-primary">
+                    <button id="iconeOrdenarPostIt" type="button" class="btn btn-primary" 
+                        data-toggle="tooltip" data-placement="left" title="Ordenar por Complexidade">
                         <span class="glyphicon glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span>
                     </button>
-                </div>
+                </div> 
                 <div id="divPostIts" class="panel-body">
                     
 					
@@ -89,13 +90,13 @@
 
                 </div>
 
-                <div class="col-md-4 panel panel-success complexidade" data-class_complexidade="comp-baixa" >
+                <div id="raiaComplexidadeBaixa" class="col-md-4 panel panel-success complexidade" data-class_complexidade="comp-baixa" >
                     <div class="panel panel-heading">Baixa</div>
                 </div>
-                <div class="col-md-4 panel panel-warning complexidade" data-class_complexidade="comp-media" >
+                <div id="raiaComplexidadeMedia" class="col-md-4 panel panel-warning complexidade" data-class_complexidade="comp-media" >
                     <div class="panel panel-heading">Média</div>
                 </div>
-                <div class="col-md-4 panel panel-danger complexidade" data-class_complexidade="comp-alta" >
+                <div id="raiaComplexidadeAlta" class="col-md-4 panel panel-danger complexidade" data-class_complexidade="comp-alta" >
                     <div class="panel panel-heading">Alta</div>
                 </div>
             </div>
@@ -172,6 +173,9 @@
 
             Planejamento.init();
 
+            $('[data-toggle="tooltip"]').tooltip(); 
+
+
             var $divPostIts = $('#divPostIts');
             var $dropEnd = null;
 
@@ -238,11 +242,19 @@
             $('#botaoExportar').on('click', function(){
 
                 window.open('relatorio.html');
-
+            
             });
 
             $('#iconeOrdenarPostIt').on('click', function(){
-                alert('Ordenar Post-It por complexidade. NÃO IMPLEMENTADO');
+                
+                $('#raiaComplexidadeBaixa').append($('.comp-baixa'));
+                $('#raiaComplexidadeMedia').append($('.comp-media'));
+                $('#raiaComplexidadeAltar').append($('.comp-alta'));
+
+                var postItsComComplexidade = $('#divPostItsPorComplexidade').find('.postit');
+
+                $('#divPostIts').prepend(postItsComComplexidade);
+
             });
 
             $('#divPostIts').on('dblclick', '.postit', function(){
@@ -256,7 +268,7 @@
                 $('#detalheColaborador').html(dados.LT_COLABORADOR);
 
 
-                $('#myModal').modal({show : true});
+                $('#myModal').modal('show');
 
             });
 
