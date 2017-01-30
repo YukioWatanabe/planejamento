@@ -245,7 +245,7 @@
                     dados.push($(this).data('objetodados'));
                 });
 
-                if(dado.length != 0){
+                if(dados.length != 0){
                   Persistencia.salvaLocalStorage(JSON.stringify(dados));
                 }
 
