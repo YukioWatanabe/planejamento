@@ -240,12 +240,15 @@
 
             $('#botaoExportar').on('click', function(){
                 var dados = [];
-            
+
                 $('#divPostIts .postit').each(function(){
                     dados.push($(this).data('objetodados'));
                 });
 
-                Persistencia.salvaLocalStorage(JSON.stringify(dados));
+                if(dado.length != 0){
+                  Persistencia.salvaLocalStorage(JSON.stringify(dados));
+                }
+
                 window.open('relatorio.html');
             });
 

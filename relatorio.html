@@ -34,9 +34,9 @@
     </body>
     <script>
       $(document).ready(function(){
-        var dados = Persistencia.getValoresDaPesistencia();
-        if(dados === null) { windows.close(); }
-        preencheTable(JSON.parse(dados));
+        var dados = JSON.parse(Persistencia.getValoresDaPesistencia());
+        if(dados.length === 0) { window.close(); }
+        preencheTable(dados);
       });
 
       var preencheTable = function(dados){
