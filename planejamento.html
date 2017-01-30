@@ -9,10 +9,10 @@
     </head>
     <body>
         <div id="container" class="container">
-            
+
             <form class="panel panel-primary">
                 <div class="panel-heading">Buscar Post Its</div>
-                
+
                 <div class="panel-body">
                     <div class="form-group col-xs-4">
                         <label for="lider-projeto">Líder do projeto</label>
@@ -24,7 +24,7 @@
                         <label for="iteracao">Iteração</label>
                         <input id="iteracao" class="form-control">
                     </div>
-                    
+
                     <div class="col-xs-12" style="clear:both;">
                         <button id="botaoBuscar" type="submit" class="btn btn-success">Buscar</button>
                         <button id="botaoPrioridade" type="button" class="btn btn-info">Prioridade</button>
@@ -33,24 +33,24 @@
                     </div>
 
                 </div>
-                
+
             </form>
-            
+
             <div class="panel panel-default">
                 <div class="panel-heading" style="text-align:center;font-weight:bold;">
                     Post Its
 
-                    <button id="iconeOrdenarPostIt" type="button" class="btn btn-primary" 
+                    <button id="iconeOrdenarPostIt" type="button" class="btn btn-primary"
                         data-toggle="tooltip" data-placement="left" title="Ordenar por Complexidade">
                         <span class="glyphicon glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span>
                     </button>
-                </div> 
+                </div>
                 <div id="divPostIts" class="panel-body">
-                    
-					
+
+
                 </div>
             </div>
-            
+
             <div id="divPostItsPorPrioridade" class="panel panel-default" style="display: none;">
                 <div class="panel-heading">
                     Prioridade
@@ -78,7 +78,7 @@
                     <div class="panel panel-heading">1</div>
                 </div>
             </div>
-           
+
             <div id="divPostItsPorComplexidade" class="panel panel-default" style="display: none;">
                 <div class="panel-heading">
                     Complexidade
@@ -151,7 +151,7 @@
             </div>
           </div>
         </div>
-            
+
         </div>
 
 
@@ -162,18 +162,18 @@
         </div>
     </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>   
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src=".\js\planejamento.js"></script>
-
+    <script src=".\js\persistencia.js"></script>
 
     <script type="text/javascript">
-        
+
         $(document).ready(function(){
 
             Planejamento.init();
 
-            $('[data-toggle="tooltip"]').tooltip(); 
+            $('[data-toggle="tooltip"]').tooltip();
 
 
             var $divPostIts = $('#divPostIts');
@@ -193,7 +193,6 @@
             $('#btn_salvar_complexidade').on('click', function(){
 
                 var postItsComComplexidade = $('#divPostItsPorComplexidade').find('.postit');
-
                 $('#divPostIts').prepend(postItsComComplexidade);
 
             });
@@ -235,18 +234,23 @@
 
                 $('body').animate({
                     scrollTop : posicao
-                }, 1000);              
+                }, 1000);
 
             });
 
             $('#botaoExportar').on('click', function(){
-
-                window.open('relatorio.html');
+                var dados = [];
             
+                $('#divPostIts .postit').each(function(){
+                    dados.push($(this).data('objetodados'));
+                });
+
+                Persistencia.salvaLocalStorage(JSON.stringify(dados));
+                window.open('relatorio.html');
             });
 
             $('#iconeOrdenarPostIt').on('click', function(){
-                
+
                 $('#raiaComplexidadeBaixa').append($('.comp-baixa'));
                 $('#raiaComplexidadeMedia').append($('.comp-media'));
                 $('#raiaComplexidadeAltar').append($('.comp-alta'));

@@ -1,5 +1,5 @@
 var Planejamento = (function(){
-
+	
 	var init = function(){
 
 		$('#botaoBuscar').on('click', function(e){
@@ -27,7 +27,7 @@ var Planejamento = (function(){
 
 		$.each(registros, function(i, registro){
 
-			var novoPostIt = $('<div>').addClass('postit pequeno add');			
+			var novoPostIt = $('<div>').addClass('postit pequeno add');
 
 			$('<span>', {text : registro.CODIGOSOLITACAO+':'+registro.CODIGOATIVIDADE}).addClass('atividade').appendTo(novoPostIt);
 			$('<span>', {text : registro.TEMPOPREVISTO}).addClass('tempo').appendTo(novoPostIt);

@@ -1,28 +1,17 @@
-var persistencia = (function(){
-  var _convertPostItsToJSON = function(){
-    return postIts;
-  };
+var Persistencia = (function(){
 
-  var _convertJSONtoPostIts = function(object, $divPostIts){
-    var postIts = JSON.parse(object);
-  }
-
-  var salvaLocalStorage = function($divPostIts){
+  var salvaLocalStorage = function(postIts){
     if(localStorage.getItem('postIts')){
       localStorage.removeItem('postIts');
     }
-
-    var postIts = _convertPostItsToJSON();
-    localStorage.setItem('postIts', JSON.stringify(postIts));
+    localStorage.setItem('postIts', postIts);
   };
 
-  var getValoresDaPesistencia = function($divPostIts){
+  var getValoresDaPesistencia = function(postIts){
     if(!localStorage.getItem('postIts')){
-      return;
+      return null;
     }
-    var dados = localStorage.getItem('postIts');
-    var emptyDiv = $divPostIts.html('');
-    _convertJSONtoPostIts(dados, emptyDiv);
+    return localStorage.getItem('postIts');
   };
 
   return {
