@@ -5,8 +5,26 @@ var Planejamento = (function(){
 		$('#botaoBuscar').on('click', function(e){
 
 			e.preventDefault();
-
+            
+            var Classificacao = function (sigla,nome){
+                this.sigla = sigla;
+                this.nome = nome;
+                return this;
+            }
+            
+            var classificacoes = {
+                110 : new Classificacao("PSE","PSE"),
+                120 : new Classificacao("CM","Comitê/Melhoria"),
+                130 : new Classificacao("MI","Melhoria Interna"),
+                140 : new Classificacao("NF","Novas Funcionalidades")
+            }
+            
 			var registros = getRegistrosPorIterecaoLider();
+            
+            for(let registro of registros){
+                registro.CLASSIFICACAOPROJETO = classificacoes[registro.CLASSIFICACAOPROJETO];
+                registro.TEMPOPREVISTO = registro.TEMPOPREVISTO/3600;
+            }
 
 			escrevePostIts(registros);
 
@@ -20,6 +38,8 @@ var Planejamento = (function(){
 	};
 
 	var escrevePostIts = function(registros){
+        
+        
 
 		var $divPostIts = $('#divPostIts');
 
@@ -30,9 +50,9 @@ var Planejamento = (function(){
 			var novoPostIt = $('<div>').addClass('postit pequeno add');
 
 			$('<span>', {text : registro.CODIGOSOLITACAO+':'+registro.CODIGOATIVIDADE}).addClass('atividade').appendTo(novoPostIt);
-			$('<span>', {text : registro.TEMPOPREVISTO}).addClass('tempo').appendTo(novoPostIt);
+			$('<span>', {text : '['+registro.TEMPOPREVISTO+']'}).addClass('tempo').appendTo(novoPostIt);
 			$('<span>', {text : registro.TITULIATIVIDADE}).addClass('descricao').appendTo(novoPostIt);
-			$('<span>', {text : registro.CLASSIFICACAOPROJETO}).addClass('tipo').appendTo(novoPostIt);
+			$('<span>', {text : registro.CLASSIFICACAOPROJETO.sigla}).addClass('tipo').appendTo(novoPostIt);
 			$('<span>', {text : registro.PRIORIDADESOLICITACAO}).addClass('prioridade').appendTo(novoPostIt);
 
 			novoPostIt.data('objetodados', registro);
@@ -41,7 +61,7 @@ var Planejamento = (function(){
 
 		});
 
-		$("div", $divPostIts).draggable({
+		$("#divPostIts > .postit").draggable({
             revert: "invalid",
             connectToSortable: ".complexidade, .prioridade",
             cursor: "move",
