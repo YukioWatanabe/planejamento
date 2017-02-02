@@ -12,7 +12,6 @@
     position: relative;
     float: left;
     margin: 10px;
-    transition: all 0.4s;
 }
 
 .postit.pequeno{
